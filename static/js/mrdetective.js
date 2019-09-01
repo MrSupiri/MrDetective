@@ -66,7 +66,7 @@ function show_ss(image_array) {
 
     $("#view-screenshot").modal();
 
-    document.getElementById("view-ss-img").src = '/static/screenshots/'+image_array[0]+'.jpg';
+    document.getElementById("view-ss-img").src = 'https://cdn.iconicto.com/MrDetective/'+image_array[0]+'.jpg';
     // document.getElementById("view-ss-img").src /screenshots/'+image_array[0]+'.jpg';
 }
 
