@@ -3,4 +3,4 @@ passlib
 requests
 flask
 boto3
-mysql-connector
+psycopg2
