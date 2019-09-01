@@ -1,0 +1,110 @@
+{% extends "header.html" %}
+
+{% block body %}
+
+    <div class="album py-5 bg-light">
+        <div class="container" id="card-holder">
+            <div class="row" id="screenshots">
+                {% include 'card_generator.html' %}
+            </div>
+        </div>
+        <p id="loading" class="text-center"><img src="{{ url_for('static', filename='img/loading.gif') }}" alt="Loading…"/></p>
+    </div>
+
+    <div class="modal fade" id="correct-prediction" tabindex="-1" role="dialog" aria-hidden="true" style="padding-top: 100px;">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="alert-danger modal-body text-center">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><br/>
+                <ul class="list-unstyled">
+                    <li><p>Are you sure want to tell the AI to classify</p></li>
+                    <li><p id="correct-ss-text"></p></li>
+                    <li><p>as Non Hacker</p></li>
+                </ul>
+                <a href="#" class="btn btn-success" onclick="update_ai(select_ss)">Yes <i class="fa fa-check"></i></a>
+                <a href="#" class="btn btn-danger" data-dismiss="modal" aria-label="Close">No <i class="fa fa-times"></i></a>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="view-screenshot" tabindex="-1" role="dialog" aria-hidden="true" style="padding-top: 50px;">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+            <div class="imagebox">
+                <img class="img-fluid" src="" id="view-ss-img">
+                <div class="imagebox-desc">
+                    <div class="row justify-content-center">
+                        <div class="col">
+                             <table class="table-hover">
+                                <tbody>
+                                    <tr>
+                                        <td class="text-right">ID </td>
+                                        <td id="view-ss-0"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-right">Name </td>
+                                        <td id="view-ss-1"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-right">GUID </td>
+                                        <td id="view-ss-5"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-right">Last IP </td>
+                                        <td id="view-ss-7"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-right">Banned By </td>
+                                        <td id="view-ss-10"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col">
+                            <table class="table-hover">
+                                <tbody>
+                                    <tr>
+                                        <td class="text-right">Prediction </td>
+                                        <td id="view-ss-9"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-right">B3ID </td>
+                                        <td id="view-ss-2"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-right">Visits </td>
+                                        <td id="view-ss-3"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-right">Location </td>
+                                        <td id="view-ss-6"></td>
+                                    <tr>
+                                        <td class="text-right">Penalties </td>
+                                        <td id="view-ss-8"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                     <table class="table-hover">
+                        <tbody>
+                            <tr>
+                                <td class="text-right">Aliases </td>
+                                <td id="view-ss-4"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        var clan = '{{ clan }}';
+        var select_ss = 1;
+    </script>
+{% endblock %}

@@ -1,0 +1,157 @@
+
+<!--==============================================================================
+	██████████████████████████████████████████████████████████████████
+	█░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░█
+	█░░░░░░░░░░░░░░░░░░░░░░░░░░░CODE BY░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░█
+	█░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░█
+	█░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░█
+	█░░░░█████████░█████░░████░██████████░█████░██████████░░█████░░░░█
+	█░░░███░░░░░░░░░███░░░░██░░░███░░░░███░███░░░███░░░░███░░███░░░░░█
+	█░░░░█████████░░███░░░░██░░░█████████░░███░░░█████████░░░███░░░░░█
+	█░░░░░░░░░░░███░███░░░░██░░░███░░░░░░░░███░░░███░░███░░░░███░░░░░█
+	█░░░██████████░░░███████░░░█████░░░░░░█████░█████░░████░█████░░░░█
+	█░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░█
+	█░fb.com/isalapi | github.com/mrsupiri | linkedin.com/in/supiri░░█
+	█░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░█
+	█░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░█
+	██████████████████████████████████████████████████████████████████
+==============================================================================-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>MrDetective</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/mrdetective.css') }}">
+
+    {% include 'navbar.html' %}
+</head>
+
+<body>
+    <div style="padding-top: 35px;">
+    {% block body %}{% endblock %}
+    </div>
+
+    <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/fontawesome-all.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/mrdetective.js') }}"></script>
+
+    <div class="modal fade " id="flash" tabindex="-1" role="dialog" aria-hidden="true" style="padding-top: 100px;">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="alert-danger modal-body">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+                <br/>
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <script>
+                        $(document).ready(function(){
+                            $("#flash").modal();
+                        });
+                    </script>
+                    <div class="container-fluid">
+                    <ul class="list-unstyled">
+                    {% for message in messages %}
+                        <li class="text-center text-dark">{{message}}</li>
+                    {% endfor %}
+                    </ul>
+                    </div>
+                {% endif %}
+                {% endwith %}
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="access-denied" tabindex="-1" role="dialog" aria-hidden="true" style="padding-top: 100px;">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="alert-danger modal-body text-center">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+                <br/>
+                <h3>Access Denied!</h3>
+                {% if session.logged_in %}
+                <p>You Don't Have <b>Permission</b> to access this</p>
+                {% else %}
+                <p>Please Login if You Want to Access this</p>
+                {% endif %}
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="appeal" tabindex="-1" role="dialog" aria-hidden="true" style="padding-top: 100px;">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Make a Appeal</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h5>Not Implemented Yet</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="clipboard" tabindex="-1" role="dialog" aria-hidden="true" style="padding-top: 100px;">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="input-group">
+                    <input type="text" class="form-control" id="clipboard_link" title="">
+                    <div class="input-group-append">
+                        <button class="btn btn-success" type="button" onclick="copy_link()"><i class="far fa-copy"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" tabindex="-1" role="dialog" id="register" aria-hidden="true" style="padding-top: 100px;">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Register</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form class="form" role="form" method="post" action="{{ url_for('register', clan=clan) }}">
+                <div class="modal-body">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="text" class="form-control" id="email" name="email" placeholder="Email">
+                        </div>
+                        <div class="form-group">
+                            <label for="regusername">Username</label>
+                            <input type="text" class="form-control" id="regusername" name="regusername" placeholder="Username">
+                        </div>
+                        <div class="form-group">
+                            <label for="regpassword">Password</label>
+                            <input type="password" class="form-control" id="regpassword" name="regpassword" placeholder="Password">
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

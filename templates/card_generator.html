@@ -1,0 +1,97 @@
+                {% for image in ss %}
+                <div class="col-md-4">
+                    {% if image[10] == None or image[10] == '' %}
+                    <div class="card mb-4 box-shadow">
+                    {% else %}
+                    <div class="card bg-danger mb-4 box-shadow">
+                    {% endif %}
+                        <div class="hovereffect">
+                            <a data-toggle="modal" onclick="show_ss(['{{ image[0] }}', '{{ image[1]|safe|e }}', '{{ image[2] }}', '{{ image[3] }}', '{{ image[4]|safe|e }}', '{{ image[5] }}', '{{ image[6] }}', '{{ image[7] }}', '{{ image[8] }}', '{{ image[9] }}', '{{ image[10] }}'], '{{ clan }}')">
+                                <img class="card-img-top"  alt="ScreenShot of {{ image[1] }} ({{ image[0] }})" src="/static/screenshots/{{ clan }}/{{ image[0] }}.jpg">
+                                <div class="overlay">
+                                    <h2>#{{ image[0] }} - {{ image[1] }}</h2>
+                                </div>
+                            </a>
+                        </div>
+                        {% if image[10] == None or image[10] == '' %}
+                        <div class="card-body">
+                        {% else %}
+                        <div class="card-body text-white">
+                        {% endif %}
+                            <div class="align-items-center d-flex justify-content-center">
+                                <table class="table-hover">
+                                    <tbody>
+                                        <tr>
+                                            <th class="text-center">ID: #{{ image[0] }} </th>
+                                            <th class="text-center">Prediction - {{ image[9] }}%</th>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-right">Name </td>
+                                            <td>: {{ image[1] }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-right">B3ID </td>
+                                            <td>: {{ image[2] }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-right">GUID </td>
+                                            <td>: {{ image[5] }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center" style="padding-top: 15px;">
+                                <div class="btn-group-vertical">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-sm btn-warning" onclick="show_ss(['{{ image[0] }}', '{{ image[1]|safe|e }}', '{{ image[2] }}', '{{ image[3] }}', '{{ image[4]|safe|e }}', '{{ image[5] }}', '{{ image[6] }}', '{{ image[7] }}', '{{ image[8] }}', '{{ image[9] }}', '{{ image[10] }}'], '{{ clan }}')">View <i class="fa fa-image"></i></button>
+                                        {% if session['logged_in'] and 'ban' in session['permission'] %}
+                                            {% if image[10] == None or image[10] == '' %}
+                                            <a href="{{ url_for('ban_player', clan=clan, ssid=image[0]) }}"><button type="button" class="btn btn-sm btn-danger"><i class="fa fa-thumbs-down"></i></button></a>
+                                            {% else %}
+                                            <a href="{{ url_for('unban_player', clan=clan, ssid=image[0]) }}"><button type="button" class="btn btn-sm btn-success"><i class="fa fa-thumbs-up"></i></button></a>
+                                            {% endif %}
+                                        {% else %}
+                                            {% if image[10] == None or image[10] == '' %}
+                                            <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#access-denied">Ban <i class="fa fa-thumbs-down"></i></button>
+                                            {% else %}
+                                            <button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#access-denied">UnBan <i class="fa fa-thumbs-up"></i></button>
+                                            {% endif %}
+                                        {% endif %}
+                                    </div>
+                                    <div class="btn-group">
+                                        {% if session['logged_in'] and 'train' in session['permission'] %}
+                                            {% if image[10] == None or image[10] == '' %}
+                                            <button type="button" class="btn btn-sm btn-success" onclick="correct_ss({{ image[0] }})"><i class="fa fa-wrench"></i></button>
+                                            {% else %}
+                                            <button type="button" class="btn btn-sm" onclick="correct_ss({{ image[0] }})"><i class="fa fa-wrench"></i></button>
+                                            {% endif %}
+                                        {% else %}
+                                            {% if image[10] == None or image[10] == '' %}
+                                            <button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#access-denied"><i class="fa fa-wrench"></i></button>
+                                            {% else %}
+                                            <button type="button" class="btn btn-sm" data-toggle="modal" data-target="#access-denied"><i class="fa fa-wrench"></i></button>
+                                            {% endif %}
+                                        {% endif %}
+
+                                        {% if session['logged_in'] %}
+                                            <button type="button" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#appeal"><i class="fa fa-gavel"></i></button>
+                                        {% else %}
+                                            <button type="button" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#access-denied"><i class="fa fa-gavel"></i></button>
+                                        {% endif %}
+
+                                        <button type="button" class="btn btn-sm btn-primary" onclick="sharenow({{ image[0] }})"><i class="fab fa-facebook"></i></button>
+                                        <button type="button" class="btn btn-sm btn-dark" onclick="copy_clipboard({{ image[0] }})"><i class="fa fa-link"></i></button>
+                                    </div>
+                                </div>
+                            {% if image[10] == None or image[10] == '' %}
+                            <small class="text-muted">{{ image[11] }}</small>
+                            {% else %}
+                            <small>{{ image[11] }}</small>
+                            {% endif %}
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {% endfor %}
