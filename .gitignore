@@ -272,3 +272,5 @@ fabric.properties
 
 Gunicorn.log
 static/screenshots
+.env
+.idea

@@ -6,7 +6,7 @@ $(document).ready(function() {
             $('#loading').show();
 
             $.ajax({
-                url: '/'+clan+'/load/',
+                url: '/load/',
                 dataType: 'html',
                 success: function(html) {
                     $('#screenshots').append(html);
@@ -33,7 +33,7 @@ $(document).ready(function() {
 })(jQuery);
 
 function sharenow(ssid) {
-    window.open ('//www.facebook.com/sharer/sharer.php?u=https://mrdetective.supiritech.com/ba/'+clan+'/ss/'+ssid,'','width=250, height=250, scrollbars=yes');
+    window.open ('//www.facebook.com/sharer/sharer.php?u=https://mrdetective.supiritech.com/ba/ss/'+ssid,'','width=250, height=250, scrollbars=yes');
 }
 
 function copy_link() {
@@ -44,7 +44,7 @@ function copy_link() {
 }
 
 function copy_clipboard(ssid) {
-    document.getElementById("clipboard_link").value = 'https://mrdetective.supiritech.com/'+clan+'/ss/'+ssid;
+    document.getElementById("clipboard_link").value = 'https://mrdetective.supiritech.com/ss/'+ssid;
     $("#clipboard").modal();
 }
 
@@ -58,7 +58,7 @@ function update_ai() {
 
 }
 
-function show_ss(image_array, clan_name) {
+function show_ss(image_array) {
 
     for(var i = 0; i < image_array.length; i++) {
         document.getElementById("view-ss-"+i).innerHTML = ': '+image_array[i];
@@ -66,8 +66,8 @@ function show_ss(image_array, clan_name) {
 
     $("#view-screenshot").modal();
 
-    document.getElementById("view-ss-img").src = '/static/screenshots/'+clan_name+'/'+image_array[0]+'.jpg';
-    // document.getElementById("view-ss-img").src = '/static/'+clan+'/screenshots/'+image_array[0]+'.jpg';
+    document.getElementById("view-ss-img").src = '/static/screenshots/'+image_array[0]+'.jpg';
+    // document.getElementById("view-ss-img").src /screenshots/'+image_array[0]+'.jpg';
 }
 
 function update_search(value) {

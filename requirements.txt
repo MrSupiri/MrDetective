@@ -1,0 +1,6 @@
+requests-toolbelt
+passlib
+requests
+flask
+boto3
+mysql-connector

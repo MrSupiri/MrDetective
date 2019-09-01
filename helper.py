@@ -1,14 +1,20 @@
-import sqlite3
 import gc
 import os
 import logging
 import struct
+import psycopg2
 
 
 class Database:
-    def __init__(self, db):
+    def __init__(self):
         try:
-            self.conn = sqlite3.connect('data/{}.db'.format(db))
+            self.conn = psycopg2.connect(
+                database=os.getenv('PG_DATABASE').strip(),
+                user=os.getenv('PG_USERNAME').strip(),
+                password=os.getenv('PG_PASSWORD').strip(),
+                host=os.getenv('PG_HOST').strip(),
+                port=os.getenv('PG_PORT').strip())
+
             self.c = self.conn.cursor()
         except Exception as e:
             LOG.exception(e)

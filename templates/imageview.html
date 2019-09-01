@@ -4,7 +4,7 @@
     <div class="container" style="padding-top: 70px;">
 	<div class="row">
 		<div class="col-lg-8 col-sm-6">
-            <img src="/static/screenshots/{{ clan }}/{{ data[0][0] }}.jpg" class="img-fluid rounded"/>
+            <img src="/static/screenshots/{{ data[0][0] }}.jpg" class="img-fluid rounded"/>
 		</div>
 		<div class="col-lg-4 col-sm-6">
 			<table class="table table-hover table-bordered" style="padding-top: 100px;">
@@ -52,7 +52,7 @@
 				{% else %}
 				<tr>
 					<th>Ban Now</th>
-					<td><a href="/{{ clan }}/ban/?ssid={{data[0][0]}}" class="btn btn-danger">Ban Player <i class="fa fa-thumbs-down"></i></a></td>
+					<td><a href="/ban/?ssid={{data[0][0]}}" class="btn btn-danger">Ban Player <i class="fa fa-thumbs-down"></i></a></td>
 				</tr>
 				{% endif %}
 			</table>
