@@ -335,7 +335,7 @@ def submit_ss():
             f = request.files['ss']
 
             s3_client.upload_fileobj(f, os.getenv("BUCKET_NAME").strip(),
-                                     'MrDetective/screenshots/{}.jpg'.format(id),
+                                     'MrDetective/{}.jpg'.format(id),
                                      ExtraArgs={'ACL': 'public-read'})
 
             db.write('''INSERT INTO ScreenShots (Name,B3ID,Connections,Aliases,GUID,Address,IP,Penalties,Score,
