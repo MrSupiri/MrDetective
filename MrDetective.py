@@ -334,8 +334,7 @@ def submit_ss():
                 address = 'Not Found'
             f = request.files['ss']
 
-            s3_client.upload_fileobj(f, os.getenv("BUCKET_NAME").strip(),
-                                     'MrDetective/{}.jpg'.format(id),
+            s3_client.upload_fileobj(f, 'MrDetective/{}.jpg'.format(id),
                                      ExtraArgs={'ACL': 'public-read'})
 
             db.write('''INSERT INTO ScreenShots (Name,B3ID,Connections,Aliases,GUID,Address,IP,Penalties,Score,

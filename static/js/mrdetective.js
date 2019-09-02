@@ -33,7 +33,7 @@ $(document).ready(function() {
 })(jQuery);
 
 function sharenow(ssid) {
-    window.open ('//www.facebook.com/sharer/sharer.php?u=https://mrdetective.supiritech.com/ba/ss/'+ssid,'','width=250, height=250, scrollbars=yes');
+    window.open ('//www.facebook.com/sharer/sharer.php?u=https://mrdetective.supiritech.com/ba/'+ssid,'','width=250, height=250, scrollbars=yes');
 }
 
 function copy_link() {
@@ -44,7 +44,7 @@ function copy_link() {
 }
 
 function copy_clipboard(ssid) {
-    document.getElementById("clipboard_link").value = 'https://mrdetective.supiritech.com/ss/'+ssid;
+    document.getElementById("clipboard_link").value = 'https://mrdetective.supiritech.com/'+ssid;
     $("#clipboard").modal();
 }
 
