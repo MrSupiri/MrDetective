@@ -22,7 +22,7 @@ s3_client = boto3.client('s3',
                          endpoint_url=os.getenv('S3_ENDPOINT').strip(),
                          aws_access_key_id=os.getenv('S3_ACCESS_KEY').strip(),
                          aws_secret_access_key=os.getenv('S3_SECRET_KEY').strip(),
-                         config=Config(s3={'addressing_style': 'path'}))
+                         config=Config(s3={'addressing_style': 'virtual'}))
 
 
 # session['permission'] = ban, train, unban, getss, delss, add_admin, remove_admin
