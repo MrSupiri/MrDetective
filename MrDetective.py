@@ -12,15 +12,17 @@ from requests_toolbelt import MultipartEncoder
 import requests
 import os
 import boto3
+from botocore.client import Config
 
 app = Flask(__name__)
 app.secret_key = os.getenv('APP_SECRET').strip()
 
-s3_client = boto3.session.Session().client('s3',
-                                           region_name=os.getenv('S3_REGION').strip(),
-                                           endpoint_url=os.getenv('S3_ENDPOINT').strip(),
-                                           aws_access_key_id=os.getenv('S3_ACCESS_KEY').strip(),
-                                           aws_secret_access_key=os.getenv('S3_SECRET_KEY').strip())
+s3_client = boto3.client('s3',
+                         region_name=os.getenv('S3_REGION').strip(),
+                         endpoint_url=os.getenv('S3_ENDPOINT').strip(),
+                         aws_access_key_id=os.getenv('S3_ACCESS_KEY').strip(),
+                         aws_secret_access_key=os.getenv('S3_SECRET_KEY').strip(),
+                         config=Config(s3={'addressing_style': 'path'}))
 
 
 # session['permission'] = ban, train, unban, getss, delss, add_admin, remove_admin
